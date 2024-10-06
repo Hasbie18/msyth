@@ -60,7 +60,7 @@ function animate() {
 
 animate();
 
-
+// Music section
 const music = document.getElementById('backgroundMusic');
 
 // Function to save the current playback time in localStorage
@@ -72,13 +72,33 @@ function saveMusicPosition() {
 window.addEventListener('load', () => {
     const savedTime = localStorage.getItem('musicTime');
     if (savedTime) {
-        music.currentTime = savedTime; // Set the saved playback position
+        music.currentTime = parseFloat(savedTime); // Set the saved playback position
     }
-    music.play(); // Ensure music continues playing after setting the time
+    
+    // Try to play the music after loading
+    playMusic();
 });
+
+// Function to play the music
+function playMusic() {
+    music.play().catch(error => {
+        console.error("Audio playback failed: ", error);
+        // You can also display a message to the user here if desired
+    });
+}
 
 // Save the playback position when the page is being unloaded
 window.addEventListener('beforeunload', saveMusicPosition);
+
+// Add a click event to start the audio playback on user interaction
+document.addEventListener('click', () => {
+    if (music.paused) {
+        music.muted = false; // Ensure sound is unmuted
+        playMusic(); // Play music on user interaction
+    }
+});
+
+// end music section
 
 // carousel
 // JavaScript untuk carousel
