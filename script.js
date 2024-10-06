@@ -117,3 +117,19 @@ function slideCarousel() {
 setInterval(slideCarousel, 3000);
 
 
+// typewritter effect
+const text = "Wish you all the best"; // Teks yang akan ditampilkan
+let idx = 0;
+
+function type() {
+    if (index < text.length) {
+        document.getElementById('typewriter-text').innerHTML += text.charAt(idx);
+        idx++;
+        setTimeout(type, 200); // Waktu delay antara huruf
+    }
+}
+
+// Mulai efek ketik setelah halaman dimuat
+window.onload = () => {
+    type();
+};

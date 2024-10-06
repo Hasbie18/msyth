@@ -80,15 +80,17 @@ body, html {
 
     .text-box {
         margin-top: 30px; /* Tambahkan jarak antara carousel dan tulisan */
+        margin-bottom: 25px;
         margin-right: 0; /* Hilangkan margin kanan */
     }
 
     .carousel {
-        width: 90vw; /* Lebar responsif */
-        max-width: 90vw;
+        width: 80vw; /* Lebar responsif */
+        height: 80vw;
+        max-width: 100vw;
     }
 
     .carousel-images img {
-        max-height: 200px; /* Mengatur tinggi gambar untuk layar kecil */
+        max-height: 450px; /* Mengatur tinggi gambar untuk layar kecil */
     }
 }
