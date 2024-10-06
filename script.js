@@ -81,21 +81,19 @@ window.addEventListener('load', () => {
 window.addEventListener('beforeunload', saveMusicPosition);
 
 // carousel
-// Mendapatkan elemen carousel dan semua gambar
+// JavaScript untuk carousel
 const carouselImages = document.querySelector('.carousel-images');
 const images = document.querySelectorAll('.carousel-images img');
-let index = 0; // Variabel untuk menyimpan indeks gambar saat ini
+let index = 0;
 
-// Fungsi untuk menggeser carousel
 function slideCarousel() {
-    index++; // Pindah ke gambar berikutnya
-    if (index >= images.length) {
-        index = 0; // Kembali ke gambar pertama setelah gambar terakhir
-    }
-    // Menerapkan pergeseran gambar
-    carouselImages.style.transform = `translateX(${-index * 100}%)`;
-    console.log('Index: ', index); // Debugging: Melihat nilai indeks
+    // Pindah gambar
+    index = (index + 1) % images.length;
+    const translateX = -index * 100; // Pindahkan 100% untuk tiap gambar
+    carouselImages.style.transform = `translateX(${translateX}%)`;
 }
 
-// Ganti gambar setiap 3 detik
+// Jalankan slide setiap 3 detik
 setInterval(slideCarousel, 3000);
+
+

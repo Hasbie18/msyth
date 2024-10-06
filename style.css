@@ -4,56 +4,41 @@ body, html {
     height: 100%;
     background: linear-gradient(to bottom, #0d1b2a, #031327, #082e6b, #1c4090);
     font-family: Arial, sans-serif;
-    position: relative;
-}
-
-/* Gaya untuk canvas */
-canvas {
-    display: block;
-    position: absolute; /* Posisi canvas */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0; /* Pastikan canvas di belakang */
-}
-
-/* Container utama yang berisi text dan carousel */
-.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 2; /* Pastikan container di atas canvas */
+    overflow: hidden;
 }
 
-/* Gaya untuk text box */
-.text-box {
-    flex: 1;
-    margin: 10px;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text-box {
     color: white;
     font-size: 2em;
     font-weight: bold;
-    border: 2px solid rgba(255, 255, 255, 0.5);
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    max-width: 400px;
+    padding: 15px;
+    margin-bottom: 0;
+    border: none;
 }
 
-/* Gaya untuk carousel */
 .carousel {
-    flex: 1;
-    margin: 10px;
-    width: 100%;
-    max-width: 400px;
+    width: 300px;
     position: relative;
     overflow: hidden;
     border: 2px solid rgba(255, 255, 255, 0.5);
@@ -65,30 +50,45 @@ canvas {
 
 .carousel-images {
     display: flex;
-    width: 300%; /* Total lebar untuk menampung 3 gambar */
     transition: transform 0.5s ease-in-out;
+    width: 100%;
 }
 
 .carousel-images img {
-    width: 100%;
-    height: 300px; /* Menentukan tinggi tetap */
+    min-width: 100%;
+    max-height: 300px;
     object-fit: cover;
     border-radius: 15px;
 }
 
-/* Responsif untuk layar kecil */
+/* Layar besar - tulisan di samping slider */
+@media (min-width: 769px) {
+    .container {
+        flex-direction: row; /* Susun secara horizontal pada layar besar */
+    }
+    .text-box {
+        margin-right: 20px; /* Tambahkan jarak horizontal */
+        margin-top: 0; /* Hilangkan margin atas */
+    }
+}
+
+/* Layar kecil - tulisan di bawah slider dan tambahkan gap */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Susun elemen secara vertikal pada layar kecil */
     }
 
-    .text-box, .carousel {
-        flex: 1;
-        max-width: none;
+    .text-box {
+        margin-top: 30px; /* Tambahkan jarak antara carousel dan tulisan */
+        margin-right: 0; /* Hilangkan margin kanan */
+    }
+
+    .carousel {
+        width: 90vw; /* Lebar responsif */
+        max-width: 90vw;
     }
 
     .carousel-images img {
-        height: 200px; /* Tinggi lebih kecil di perangkat kecil */
+        max-height: 200px; /* Mengatur tinggi gambar untuk layar kecil */
     }
 }
