@@ -1,0 +1,94 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, #0d1b2a, #031327, #082e6b, #1c4090);
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+/* Gaya untuk canvas */
+canvas {
+    display: block;
+    position: absolute; /* Posisi canvas */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Pastikan canvas di belakang */
+}
+
+/* Container utama yang berisi text dan carousel */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2; /* Pastikan container di atas canvas */
+}
+
+/* Gaya untuk text box */
+.text-box {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+}
+
+/* Gaya untuk carousel */
+.carousel {
+    flex: 1;
+    margin: 10px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-images {
+    display: flex;
+    width: 300%; /* Total lebar untuk menampung 3 gambar */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-images img {
+    width: 100%;
+    height: 300px; /* Menentukan tinggi tetap */
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-box, .carousel {
+        flex: 1;
+        max-width: none;
+    }
+
+    .carousel-images img {
+        height: 200px; /* Tinggi lebih kecil di perangkat kecil */
+    }
+}
